@@ -1,0 +1,26 @@
+{
+    "name": "accesskey",
+    "title": "jQuery AccessKey",
+    "description": "A jQuery plugin to manage accesskeys on a document model.",
+    "keywords": [ "navigation", "animation", "form" ],
+    "version": "1.1.0",
+    "author": {
+        "name": "Piero Wbmstr",
+        "email": "piero.wbmstr@gmail.com",
+        "url": "https://github.com/PieroWbmstr"
+    },
+    "maintainers": [{
+        "name": "Piero Wbmstr",
+        "email": "piero.wbmstr@gmail.com"
+    }],
+    "licenses": [{
+        "type": "GPL-3.0",
+        "url": "http://opensource.org/licenses/GPL-3.0"
+    }],
+    "bugs": "https://github.com/PieroWbmstr/jQuery-AccessKey/issues",
+    "homepage": "https://github.com/PieroWbmstr/jQuery-AccessKey",
+    "docs": "https://github.com/PieroWbmstr/jQuery-AccessKey",
+    "download": "https://github.com/PieroWbmstr/jQuery-AccessKey/archive/master.zip",
+    "demo": "http://jquery-accesskey.ateliers-pierrot.fr/",
+    "dependencies": { "jquery": ">=1.9" }
+}

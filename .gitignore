@@ -1,0 +1,23 @@
+# .gitignore
+# Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
+
+# Hack
+!.gitkeep
+
+# OS & software files
+._*
+.DS_Store
+*~
+Thumbs.db
+ehthumbs.db
+Icon
+
+# Specifics
+composer.lock
+tmp/*
+cache/*
+dev/*
+phpdoc/*
+deps/*
+others/*
+src/vendor/*

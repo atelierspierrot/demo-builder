@@ -1,0 +1,153 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Configuration of the DemoBuilder{% endblock %}
+
+{% block metas %}
+{% include DB.getTemplate('metas') %}
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ assets }}demobuilder_styles.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+{% include 'ltie7_warning.html.twig' %}
+
+      <div class="demobuilder-wrapper">
+
+          <form class="form-horizontal form-config" action="{{ rootfile }}" method="post">
+
+            <div class="text-right form-config-header">
+                <a class="popoverable_bottom" href="{{ 'empty'|getBuilderRouteUrl }}" title="Back to empty configuration" data-content="As the configuration settings are stored in session, this will empty your current configuration and get back to an empty session.">Clear current DemoBuilder's configuration</a>
+                &nbsp;|&nbsp;
+                <a class="popoverable_bottom" href="{{ 'doc'|getBuilderRouteUrl }}" title="DemoBuilder's DemoBuilder" data-content="See the DemoBuilder's documentation built with itself.">See the DemoBuilder's DemoBuilder</a>
+            </div>
+
+            <h2 class="form-config-heading">DemoBuilder configuration</h2>
+        
+            <fieldset>
+
+                <div class="control-group">
+                    <label class="control-label" for="root_directory">Root package directory</label>
+                    <div class="controls">
+                        <input type="text" class="span4 popoverable" placeholder="Root directory" id="root_directory" name="root_directory" title="Your root package directory" data-content="This is the global absolute path to your package, containing the directory below. This directory must exist." required>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="directory">Demo pages directory</label>
+                    <div class="controls">
+                        <input type="text" class="span4 popoverable" placeholder="Base documentation directory" id="directory" name="directory" title="Your demo pages directory" data-content="This is the demo pages relative path of your package, constructed from the root directory above. This directory must exist." required>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="manifest">Package manifest</label>
+                    <div class="controls">
+                        <div class="input-append">
+                            <input type="text" class="input-block-level span4 popoverable" placeholder="Package manifest" id="manifest" name="manifest" title="Your package manifest" data-content="The manifest file of your package, as a jquery or composer manifest. This file must exist and can be either a JSON, PHP or INI file." required>
+                            <div class="btn-group">
+                                <button class="btn dropdown-toggle btn-config" data-toggle="dropdown">Presets</button>
+                                <button class="btn dropdown-toggle btn-config" data-toggle="dropdown"><span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a tabindex="-1" href="#" onclick="insertManifest('composer.json');" title="Set this value on the 'composer.json' manifest file at the root directory of your package">composer.json</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="insertManifest('jquery.json');" title="Set this value on the 'jquery.json' manifest file at the root directory of your package">jquery.json</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="insertManifest('manifest.json');" title="Set this value on 'manifest.json' file at the root directory of your package">manifest.json</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="insertManifest('manifest.php');" title="Set this value on 'manifest.php' file at the root directory of your package">manifest.php</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="demo_config">Configuration filename</label>
+                    <div class="controls">
+                        <div class="input-append">
+                            <input type="text" class="input-block-level span4 popoverable" placeholder="Demo manifest" id="demo_config" name="demo_config" title="Your demo pages configuration filename" data-content="The configuration filename used in your package's demo. This file must exist at the root of the demo pages but is not required for each page and can be either a JSON, PHP or INI file." required>
+                            <div class="btn-group">
+                                <button class="btn dropdown-toggle btn-config" data-toggle="dropdown">Presets</button>
+                                <button class="btn dropdown-toggle btn-config" data-toggle="dropdown"><span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a tabindex="-1" href="#" onclick="insertDemoConfig('demo.config.json');" title="Set this value on the default 'demo.config.json' file">demo.config.json</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="insertDemoConfig('demo.config.php');" title="Set this value on the default 'demo.config.php' file">demo.config.php</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <a href="#" class="toggler" data-toggle="collapse" data-target="#more_options" title="Define other configuration options">+ More Configuration Options</a>
+            <div id="more_options" class="collapse">
+            <fieldset class="second">
+
+                <div class="control-group">
+                    <label class="control-label" for="templates_dir">Global templates directory</label>
+                    <div class="controls">
+                        <input type="text" class="span4" placeholder="Templates files directory" id="templates_dir" name="templates_dir" value="{{ DB.getOption('templates_dir') }}">
+                        <span class="help-block muted"><small>This is the directory containing the files used to build the HTML views of the builder. This directory must exist.</small></span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="template">Global template file</label>
+                    <div class="controls">
+                        <input type="text" class="span4" placeholder="Template file path" id="template" name="template" value="{{ DB.getOption('template') }}">
+                        <span class="help-block muted"><small>This is the file used to build the HTML view of each demo page. You can use either some plain PHP template or, like the default behavior, some <a href="http://twig.sensiolabs.org/" title="See online: http://twig.sensiolabs.org/">Twig</a> templates. This file must exist.</small></span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="charset">Pages charset</label>
+                    <div class="controls">
+                        <input type="text" class="span4" placeholder="Pages charset" id="charset" name="charset" value="{{ charset }}">
+                        <span class="help-block muted"><small>This is the HTML charset used for demo pages. This value must be <a href="http://www.unicode.org/standard/standard.html" title="See online: http://www.unicode.org/standard/standard.html">Unicode</a> compliant.</small></span>
+                    </div>
+                </div>
+
+            </fieldset>
+            </div>
+
+            <br />
+            <div class="text-right">
+                <button class="btn btn-large btn-primary" type="submit">Submit</button>
+                &nbsp;
+                <button class="btn btn-large" type="reset">Cancel</button>
+            </div>
+          </form>
+
+        </div>
+
+{% include DB.getTemplate('footer') %}
+
+    </div> <!-- /container -->
+{% endblock %}
+
+{% block scripts %}
+    {{- parent() }}
+<script>
+function insertManifest(str)
+{
+    $('#manifest').val(str);
+}
+function insertDemoConfig(str)
+{
+    $('#demo_config').val(str);
+}
+$(function() {
+    $(".popoverable").popover({
+        placement: "top",
+        toggle: "popover",
+        trigger: "hover"
+    });
+    $(".popoverable_bottom").popover({
+        placement: "bottom",
+        toggle: "popover",
+        trigger: "hover"
+    });
+});
+</script>
+{% endblock %}

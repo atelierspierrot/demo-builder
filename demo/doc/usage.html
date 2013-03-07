@@ -1,0 +1,120 @@
+<h2 id="clientusage">Usage for client users</h2>
+
+<h3>First thoughts</h3>
+
+<p>As described in <a href="http://en.wikipedia.org/wiki/Access_key" title="Wikipedia page for 'accesskeys'">this page of Wikipedia</a>, the required combination of keys pressed to finaly access the accesskey of an element largely differs between browsers and operating systems. 
+Let's say in most cases, Windows users have to press `Ctrl` key first and Mac OSX users have to press `Alt` key first. In some cases, the `Shift` key is also required or a combination of the two keys `Ctrl + Alt`.</p>
+
+<p>To build this plugin, I first let these default behaviors by their own, testing the examples by pressing the OS/browser specific required keys first. Then I realize that it was finally part of the reasons why accesskeys are considered by most of the concerned people as a failure in accessibility recommandations.</p>
+
+<p>Indeed, it seems logical that the users do not have the habit of a behavior that would be specific to each software and environnement ... Imagine that every store where you shop accepts a different currency, you would be lost!</p>
+
+<p>So, regarding what OS or softwares does with the common shortcuts, I decided to choose a unique and uniform keys combination, making the usability of the plugin cross-platform and cross-browser and allowing final user to start construct its navigation habit.</p>
+
+<h3>And the winner is ...</h3>
+
+<p>In conclusion, I rebuilt the plugin code to work with a specific and unique keys combination to call an accesskey, with some customizable options to allow developers to use their own <span class="note">Well, this is part of the <em>work to do</em> ... allowing developer to really fit this behavior to its need. Any contribution is very welcome ;)</span>.</p>
+
+<p>By default, the plugin works with invokation like:</p>
+
+<div class="well text-center">
+<strong><var>Alt</var> key + <var>Ctrl</var> key + <var>AccessKey</var></strong>
+</div>
+
+<h2 id="developerusage">Usage for developers</h2>
+
+<h3>Requirements</h3>
+
+<p>As it depends on <strong>jQuery</strong>, you must include the library first, as for any plugin.</p>
+
+<p>Then, the only required file is the javascript code. Some CSS definitions are proposed with the plugin, that are required only if you use the default plugin's tooltips setup.</p>
+<pre class="code tabbed_code" data-language="html">
+&lt;!-- jQuery (required) --&gt;
+&lt;script src="../js/jquery-1.9.0.js"&gt;&lt;/script&gt;
+
+&lt;!-- jQuery AccesKey (required) --&gt;
+&lt;script src="../src/jquery-accesskey.js"&gt;&lt;/script&gt;
+
+&lt;!-- jQuery AccesKey default CSS (optional) --&gt;
+&lt;link rel="stylesheet" href="../src/jquery-accesskey.css" type="text/css" media="screen" /&gt;
+</pre>
+
+<h3>On document ready</h3>
+
+<p>The plugin adds the <var>.accesskey()</var> function to jQuery, that had to be called after document is ready:</p>
+
+<pre class="code">
+$(function() {
+    $('selection').accesskey();
+});</pre>
+
+<p>You can specify some options or callbacks to your call:</p>
+
+<pre class="code">
+$(function() {
+    $('selection').accesskey({
+        option_name: "my user value",
+        my_callback: function() {
+            // your stuff ...
+        }
+    });
+});
+</pre>
+
+<h3>Full overview</h3>
+
+<p>The code below is the working code on the <a href="classic.html">classic example</a> demonstration.
+
+<pre class="code">
+
+// re-define a plugin default setting for all instances
+$.fn.accesskey.defaults.debug = true;
+
+// on document ready call
+$(function() {
+
+    // a simple call on a classic jQuery selection
+    $(".intext").accesskey();
+
+    // a simple call on a classic jQuery selection specifying the accesskey and the help text for the element
+    $("#link_A")
+        .accesskey({
+            accesskey: "A", text: "Typing Ctrl+Al+A will select this link"
+        });
+
+    // a simple call on a classic jQuery selection with specific options
+    $("#link_B")
+        .accesskey({
+            accesskey: "B", text: "Option text from javascript call",
+            showOptions: "slow", hideOptions: "slow"
+        })
+        .click(function(){
+            alert('Link '+$(this).attr('id')+' just clicked !');
+        });
+
+    // a complete call with specific user callback options
+    var AK_var = $(".access-link")
+        .accesskey({
+            onCreate: function(){
+                console.debug('"onCreate" user defined call, receiving args ', arguments);
+                // your stuff ...
+            },
+            onShow: function(){
+                console.debug('"onShow" user defined call, receiving args ', arguments);
+                // your stuff ...
+            },
+            onHide: function(){
+                console.debug('"onHide" user defined call, receiving args ', arguments);
+                // your stuff ...
+            },
+            onDestroy: function(){
+                console.debug('"onDestroy" user defined call, receiving args ', arguments);
+                // your stuff ...
+            }
+        })
+        .click(function(){
+            alert('Link '+$(this).attr('id')+' just clicked !');
+        });
+
+});
+</pre>

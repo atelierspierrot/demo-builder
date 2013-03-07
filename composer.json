@@ -1,0 +1,38 @@
+{
+    "name": "atelierspierrot/demobuilder",
+    "type": "application",
+    "description": "PHP package to quickly construct, visualize and generate some demonstration pages in HTML5/CSS3",
+    "keywords": [ "demonstration", "generator" ],
+    "homepage": "https://github.com/PieroWbmstr/DemoBuilder",
+    "version": "1.0.0",
+    "license": "GPL-3.0",
+    "authors": [{
+            "name": "Pierre Cassat",
+            "email": "piero.wbmstr@gmail.com",
+            "homepage": "https://github.com/PieroWbmstr"
+    }],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.0",
+        "twig/twig": "1.*",
+        "atelierspierrot/webfilesystem": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { 
+            "Commons": "src",
+            "FileSystem": "src",
+            "DemoBuilder": "src",
+            "DemoBuilder_": "src"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/PieroWbmstr/PHP_WebFilesystem"
+        }
+    ],
+    "config": {
+        "vendor-dir": "src/vendor",
+        "bin-dir": "bin"
+    }
+}
