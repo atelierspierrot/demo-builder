@@ -1,0 +1,76 @@
+<?php
+if (!isset($builder)) die('ERROR - No builder object passed to the layout!');
+?>
+
+<?php if (!empty($builder->menu_items) || !empty($builder->pages_items)): ?>
+
+    <?php if (!empty($builder->pages_items)): ?>
+<h2>Map of the package</h2>
+    <li><a href="<?php _echo($item->url); ?>"><?php _echo($item->title); ?></a>
+    <?php endif; ?>
+
+    <?php if (!empty($builder->menu_items)): ?>
+<h2>Content menu</h2>
+<ul id="navigation_menu" class="menu" role="navigation">
+<?php
+$depth = 0;
+$current_level = null;
+?>
+        <?php $current_tag = null; ?>
+        <?php foreach ($builder->menu_items as $item): ?>
+            <?php $item_level = str_replace('h', '', $item['tag']); ?>
+            <?php $diff = $item_level-(is_null($current_level) ? $item_level : $current_level); ?>
+            <?php if ($diff > 0) : ?>
+                <?php for ($i=0; $i<$diff; $i++) : ?>
+                <ul>
+                    <li>
+                <?php endfor; ?>
+            <?php elseif ($diff < 0) : ?>
+                <?php for ($i=0; $i>$diff; $i--) : ?>
+                    </li>
+                </ul></li>
+                <li>
+                <?php endfor; ?>
+            <?php else : ?>
+                <?php if (!is_null($current_level)) : ?>
+                </li>
+                <?php endif; ?>
+                <li>
+            <?php endif; ?>
+                    <a href="#<?php _echo($item['id']); ?>"><?php _echo($item['text']); ?></a>
+            <?php $current_level = $item_level; ?>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+    <?php if (!empty($builder->pages_items)): ?>
+    </li>
+    <?php endif; ?>
+
+</ul>
+<?php endif; ?>
+
+<?php if (!empty($builder->package->isGitHub)): ?>
+<div class="info">
+    <p><a href="<?php _echo($builder->package->home); ?>">See online on GitHub</a></p>
+    <p class="comment">The sources of this plugin are hosted on <a href="http://github.com">GitHub</a>. To follow sources updates, report a bug or read opened bug tickets and any other information, please see the GitHub website above.</p>
+</div>
+<?php endif; ?>
+
+<div class="info">
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
+<?php if (!empty($builder->package->isGitHub)): ?>
+        <a href="<?php _echo($builder->package->home); ?>" target="_blank" title="GitHub">
+            <span class="at16nc at300bs at15nc atGitHub"></span>
+        </a>
+<?php endif; ?>
+        <a class="addthis_button_email"></a>
+        <a class="addthis_button_print"></a>
+        <a class="addthis_button_compact"></a>
+        <a class="addthis_counter addthis_bubble_style"></a>
+    </div>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=undefined"></script>
+    <!-- AddThis Button END -->
+</div>
+
+<p class="credits" id="user_agent"></p>
