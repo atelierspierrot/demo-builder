@@ -51,26 +51,42 @@ $current_level = null;
 
 <?php if (!empty($builder->package->isGitHub)): ?>
 <div class="info">
-    <p><a href="<?php _echo($builder->package->home); ?>">See online on GitHub</a></p>
-    <p class="comment">The sources of this plugin are hosted on <a href="http://github.com">GitHub</a>. To follow sources updates, report a bug or read opened bug tickets and any other information, please see the GitHub website above.</p>
+    <p><span class="icon github-icon""></span>&nbsp;<a href="<?php _echo($builder->package->home); ?>">See online on GitHub</a></p>
+    <p class="comment small">The sources of this plugin are hosted on <a href="http://github.com">GitHub</a>. To follow sources updates, report a bug or read opened bug tickets and any other information, please see the GitHub website above.</p>
 </div>
 <?php endif; ?>
 
+<?php if(!empty($builder->addthis)) : ?>
 <div class="info">
-    <!-- AddThis Button BEGIN -->
     <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
-<?php if (!empty($builder->package->isGitHub)): ?>
+    <?php if (!empty($builder->package->isGitHub)): ?>
         <a href="<?php _echo($builder->package->home); ?>" target="_blank" title="GitHub">
             <span class="at16nc at300bs at15nc atGitHub"></span>
         </a>
-<?php endif; ?>
+    <?php endif; ?>
         <a class="addthis_button_email"></a>
         <a class="addthis_button_print"></a>
         <a class="addthis_button_compact"></a>
         <a class="addthis_counter addthis_bubble_style"></a>
     </div>
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=undefined"></script>
-    <!-- AddThis Button END -->
+    <script type="text/javascript">
+    var addthis_config = {data_track_addressbar:false};
+    <?php if (!empty($builder->package->demo)): ?>
+    var addthis_share = {
+        url: "<?php _echo($builder->package->demo); ?>",
+        <?php if (!empty($builder->page_title)) : ?>
+        title: "<?php _echo($builder->page_title); ?>",
+        <?php endif; ?>
+        <?php if (!empty($builder->page_description)): ?>
+        description: "<?php _echo($builder->page_description); ?>"
+        <?php endif; ?>
+    };
+    <?php endif; ?>
+    </script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?php
+        echo !empty($builder->addthis->account_key) ? $builder->addthis->account_key : 'undefined';
+    ?>"></script>
 </div>
+<?php endif; ?>
 
 <p class="credits" id="user_agent"></p>

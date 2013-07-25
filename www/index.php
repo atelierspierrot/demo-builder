@@ -6,16 +6,21 @@
 $dtmz = date_default_timezone_get();
 date_default_timezone_set( !empty($dtmz) ? $dtmz:'Europe/Paris' );
 
-// the Composer autoloader
-require __DIR__.'/../vendor/autoload.php';
-
 // paths settings
-$root_dir = __DIR__.'/..';
-$assets_dir = __DIR__.'/';
+$ds = DIRECTORY_SEPARATOR;
+$root_dir = __DIR__ . $ds . '..';
+$assets_dir = __DIR__ . $ds;
 $assets_relative_dir = 'www';
 $document_root = __DIR__;
-$cache_dir = __DIR__.'/tmp';
-$views_dir = __DIR__.'/../src/DemoBuilder/views/';
+$cache_dir = __DIR__ . $ds . 'tmp';
+$views_dir = $root_dir . $ds . 'src' . $ds . 'DemoBuilder' . $ds . 'views' . $ds;
+
+// the Composer autoloader
+if (file_exists($a = $root_dir.'/vendor/autoload.php')) {
+    require_once $a;
+} else {
+    die('You need to run Composer on your project to use this interface!');
+}
 
 // the assets loader
 $assets_loader = Assets\Loader::getInstance($root_dir, $assets_relative_dir, $document_root);
