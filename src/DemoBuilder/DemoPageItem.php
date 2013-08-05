@@ -95,7 +95,7 @@ class DemoPageItem implements CachableInterface, ParserInterface
      */
     public function setMarkdownParser(MarkdownExtended $parser)
     {
-        self::$markdown_parser = $parser->get('\MarkdownExtended\Parser');
+        self::$markdown_parser = $parser;
         return $this;
     }
 
@@ -148,7 +148,8 @@ class DemoPageItem implements CachableInterface, ParserInterface
 	        $this->page_content = $this->getCache();
 	    } else {
 	        $this->page_content = $this->getMarkdownParser()
-	            ->transform(file_get_contents($this->page_path));
+	            ->transformSource($this->page_path)
+	            ->getBody();
 	        $this->setCache($this->page_content);
 	    }	    
 	    return $this;
