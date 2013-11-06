@@ -3,7 +3,7 @@ jQuery AccessKey
 
 ## a jQuery plugin to manage accesskeys on a document model
 
-These pages show and demonstrate the use and functionality of the [jQuery AccessKey plugin](https://github.com/PieroWbmstr/jQuery-AccessKey)
+These pages show and demonstrate the use and functionality of the [jQuery AccessKey plugin](https://github.com/pierowbmstr/jQuery-AccessKey)
 you just downloaded, based on the [jQuery javascript library](http://jquery.com/).
 
 You've downloaded the whole plugin's package ; to test it in your system, please see [the examples pages](classic.html) ;
