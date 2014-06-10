@@ -1,7 +1,7 @@
 /* Scripts for demo */
 
 // Avoid `console` errors in browsers that lack a console.
-// https://github.com/h5bp/html5-boilerplate
+// http://github.com/h5bp/html5-boilerplate
 (function() {
     var method;
     var noop = function () {};

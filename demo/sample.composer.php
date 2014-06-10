@@ -11,7 +11,7 @@ return array(
     "homepage"=> "http=>//webfilesystem.ateliers-pierrot.fr",
     "license"=> "GPL-3.0",
     "authors"=> array(
-        array("name"=> "Pierre Cassat", "email"=> "piero.wbmstr@gmail.com")
+        array("name"=> "Pierre Cassat", "email"=> "me@e-piwi.fr")
     ),
     "require"=> array(
         "php"=> ">=5.3.0"

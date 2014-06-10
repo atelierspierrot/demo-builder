@@ -4,13 +4,13 @@
     "title": "DemoBuilder",
     "description": "PHP package to quickly construct, visualize and generate some demonstration pages in HTML5/CSS3",
     "keywords": [ "demonstration", "generator" ],
-    "homepage": "https://github.com/AteliersPierrot/DemoBuilder",
+    "homepage": "http://github.com/AteliersPierrot/DemoBuilder",
     "version": "1.0.0",
     "license": "GPL-3.0",
     "authors": [{
             "name": "Pierre Cassat",
-            "email": "piero.wbmstr@gmail.com",
-            "homepage": "https://github.com/PieroWbmstr"
+            "email": "me@e-piwi.fr",
+            "homepage": "http://github.com/piwi"
     }],
     "minimum-stability": "dev",
     "require": {
@@ -29,7 +29,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/atelierspierrot/webfilesystem"
+            "url": "http://github.com/atelierspierrot/webfilesystem"
         }
     ],
     "config": {

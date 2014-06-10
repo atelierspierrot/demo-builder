@@ -82,10 +82,10 @@ The `repository` or `sources` field must follow these rules:
 -   `tags` : a list of tags you want to put ahead
 
 As it is commonly used, and because this field is required, the default `repository` is
-set on a [GIT](http://git-scm.com/) repository hosted by [GitHub.com](https://github.com/).
+set on a [GIT](http://git-scm.com/) repository hosted by [GitHub.com](http://github.com/).
 The name of the repository is built like:
 
-    https://github.com/[name of your project]
+    http://github.com/[name of your project]
 
 The tags will be automatically loaded from the repository if they are named using the version
 number as:
@@ -157,9 +157,9 @@ This plugin is a free software, available under [General Public License version 
 you can freely use it, for yourself or a commercial use, modify its source code according to your needs, 
 freely distribute your work and propose it to the community, as long as you let an information about its first author.
 
-As the sources are hosted on a [GIT](http://git-scm.com/) repository on [GitHub](https://github.com/PieroWbmstr/DemoBuilder),
+As the sources are hosted on a [GIT](http://git-scm.com/) repository on [GitHub](http://github.com/piwi/DemoBuilder),
 you can modify it, to ameliorate a feature or correct an error, by [creating your own fork](https://help.github.com/articles/fork-a-repo)
-of this repository, modifying it and [asking to pull your modifications](https://github.com/PieroWbmstr/DemoBuilder/pulls) on
+of this repository, modifying it and [asking to pull your modifications](http://github.com/piwi/DemoBuilder/pulls) on
 the original branch.
 
 Please note that the "master" branch is **always the latest stable version** of the code. 
@@ -169,7 +169,7 @@ Development is done on branch "dev" and you can create a new one for your own de
 
 >    DemoBuilder PHP package
 
->    https://github.com/PieroWbmstr/DemoBuilder
+>    http://github.com/piwi/DemoBuilder
 
 >    Copyleft 2013, Pierre Cassat
 

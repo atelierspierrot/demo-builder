@@ -18,7 +18,7 @@ class PackageManifest extends AbstractConfigFileDependent
         'keywords'         => array(),
         'web'              => array(),
         'sources'          => array(
-            'url' => 'https://github.com/%s',
+            'url' => 'http://github.com/%s',
             'type' => 'git',
             'name' => 'GitHub.com'
         ),
