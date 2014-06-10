@@ -3,7 +3,7 @@ jQuery AccessKey
 
 ## a jQuery plugin to manage accesskeys on a document model
 
-These pages show and demonstrate the use and functionality of the [jQuery AccessKey plugin](https://github.com/pierowbmstr/jQuery-AccessKey)
+These pages show and demonstrate the use and functionality of the [jQuery AccessKey plugin](http://github.com/piwi/jQuery-AccessKey)
 you just downloaded, based on the [jQuery javascript library](http://jquery.com/).
 
 You've downloaded the whole plugin's package ; to test it in your system, please see [the examples pages](classic.html) ;
@@ -22,7 +22,7 @@ The plugin was developed under **jQuery 1.9** and (*for now*) had not been teste
 The plugin functionalities should be compatible with any web browser on any operating system.
 
 If you find any bug or mis-compatibility, please post a message on website
-[https://github.com/pierowbmstr/jQuery-AccessKey/issues](https://github.com/pierowbmstr/jQuery-AccessKey/issues)
+[http://github.com/piwi/jQuery-AccessKey/issues](http://github.com/piwi/jQuery-AccessKey/issues)
 with a description of the error in code or rendering. A test suite using [jQuery QUnit](http://api.qunitjs.com/)
 is [proposed in this package](test_suite.html).
 
@@ -840,13 +840,13 @@ you can freely use it, for yourself or a commercial use, modify its source code 
 to your needs, freely distribute your work and propose it to the community, as long as you
 let an information about its first author.
 
-As the sources are hosted on a [GIT](http://git-scm.com/) repository on [GitHub](https://github.com/pierowbmstr/jQuery-AccessKey),
+As the sources are hosted on a [GIT](http://git-scm.com/) repository on [GitHub](http://github.com/piwi/jQuery-AccessKey),
 you can modify it, to ameliorate a feature or correct an error, by [creating your own fork](See instructions online|https://help.github.com/articles/fork-a-repo)
-of this repository, modifying it and [asking to pull your modifications]((See instructions online|https://github.com/pierowbmstr/jQuery-AccessKey/pulls))
+of this repository, modifying it and [asking to pull your modifications]((See instructions online|http://github.com/piwi/jQuery-AccessKey/pulls))
 on the original branch.
 
     jQuery AccessKey Plugin vX.Y.Z
-    https://github.com/pierowbmstr/jQuery-AccessKey
+    http://github.com/piwi/jQuery-AccessKey
     Copyleft 2013, Pierre Cassat
 
 ### Warnings

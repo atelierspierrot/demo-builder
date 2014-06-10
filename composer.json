@@ -3,7 +3,7 @@
     "type": "library",
     "description": "Helper app to build demo pages based on an HTML5 template.",
     "keywords": [ "php", "template", "demo" ],
-    "homepage": "https://github.com/atelierspierrot/demobuilder",
+    "homepage": "http://github.com/atelierspierrot/demobuilder",
     "version": "0.0.1-dev",
     "license": "GPL-3.0",
     "authors": [
@@ -13,8 +13,8 @@
             "homepage": "http://www.ateliers-pierrot.fr/"
         },{
             "name": "Pierre Cassat",
-            "email": "piwi@ateliers-pierrot.fr",
-            "homepage": "http://github.com/pierowbmstr"
+            "email": "me@e-piwi.fr",
+            "homepage": "http://github.com/piwi"
         }
     ],
     "require": {
