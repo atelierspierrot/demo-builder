@@ -24,7 +24,7 @@
         "atelierspierrot/webfilesystem": "dev-master",
         "atelierspierrot/assets-manager": "dev-master",
         "atelierspierrot/templatengine": "dev-master",
-        "atelierspierrot/markdown-extended": "dev-master"
+        "piwi/markdown-extended": "dev-master"
     },
     "require-dev": { "sami/sami": "dev-master" },
     "autoload": { "psr-0": { "DemoBuilder": "src" } },
