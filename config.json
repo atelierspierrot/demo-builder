@@ -1,0 +1,28 @@
+{
+  "default_config_filename": "config.default.php",
+  "md_config_filename": "config.markdown.php",
+  "user_config_filename": "demo.json",
+  "interface_filename": "index.php",
+  "mde_template_filename": "mde-template.html",
+  "pages_dirname": "pages",
+  "mde_binary": "vendor/markdown-extended/bin/markdown-extended",
+  "html5_quick_template": "vendor/html5-quick-template/html5-quick-template.html.php",
+  "default_page": "home",
+  "default_language": "en",
+  "extensions_callbacks": {
+    "php": "load_file_content",
+    "html": "load_file_content",
+    "md": "parse_markdown_file"
+  },
+  "user_config_items": {
+    "title":"content_title",
+    "slogan":"content_slogan",
+    "intro":"content_intro",
+    "page_title":"hqt_settings:meta_title",
+    "brand_title":"hqt_settings:brand_title",
+    "manual_url":"hqt_settings:app_manual_url",
+    "sources_url":"stamp_url",
+    "content_notice":"content_notice",
+    "pages":[]
+  }
+}

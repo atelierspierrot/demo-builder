@@ -1,0 +1,82 @@
+#!/usr/bin/env php
+<?php
+#
+# cli demo builder console
+#
+
+// required libraries
+if (file_exists($phpqlib = __DIR__.'/../../php-quick-lib/php-quick-lib.php')) {
+    require_once $phpqlib;
+} else {
+    die( sprintf('> ERROR !! - PHP-Quick-Library not found at "%s"!', $phpqlib) );
+}
+if (!file_exists($demobuilder = __DIR__.'/../demo-builder.php')) {
+    die("> ERROR !! - library '$demobuilder' not found!");
+}
+
+// PHP settings
+ini_set('display_errors', 0);
+register_shutdown_function('shutdown_handler');
+set_error_handler('error_handler', E_ALL | E_STRICT);
+set_exception_handler('exception_handler');
+
+// usage string & exit
+function usage($status = 0) {
+    $args = settings('argv');
+    $howto = default_cli_usage_info();
+    echo <<<EOT
+
+usage:  php  {$args[0]} [-h|--help] [-x|--debug] [-v|--verbose] [-V|--version] <type = settings>
+
+'type' options are:
+    flush       : flush demo-builder cache
+    template    : generate the base markdown template - [-o|--output path/filename]
+    debug       : debug the demo-builder environment
+
+{$howto}
+
+
+EOT;
+    exit($status);
+}
+
+// write info in verbose mode
+function be_verbose($str) {
+    if (settings('verbose')==true) {
+        echo $str, PHP_EOL;
+    }
+}
+
+// options
+$opts = get_options(
+    array(
+        'h' => function() { if (function_exists('usage')) { usage(); exit(); } },
+        'x' => function() { debug(settings()); exit(); },
+        'V' => function() { phpclib_info(); exit(0); },
+        'v' => 'verbose',
+        'o:' => function($path=null) { if(!is_null($path)) settings('output_path', $path); }
+    ),
+    array(
+        'help' => function() { if (function_exists('usage')) { usage(); exit(); } },
+        'debug' => function() { debug(settings()); exit(); },
+        'version' => function() { phpclib_info(); exit(0); },
+        'verbose' => 'verbose',
+        'output:' => function($path=null) { if(!is_null($path)) settings('output_path', $path); }
+    )
+);
+
+// 'type' argument
+$args = settings('argv');
+$action = count($args) > 1 ? array_pop($args) : null;
+if (is_null($action)) {
+    error('Argument "type" is required!');
+}
+
+// let's go
+settings(array(
+    'arg_ln'        => settings('default_language'),
+    'arg_page'      => settings('default_page'),
+    'arg_action'    => $action,
+));
+define('DEMO_BASEDIR', getcwd());
+require_once $demobuilder;
