@@ -1,0 +1,24 @@
+{
+  "name": "atelierspierrot/demo-builder",
+  "type": "library",
+  "description": "Helper app to build demo pages based on an HTML5 template.",
+  "keywords": [ "php", "template", "demo" ],
+  "homepage": "http://github.com/atelierspierrot/demo-builder",
+  "license": "GPL-3.0",
+  "authors": [{
+    "name": "Pierre Cassat",
+    "homepage": "http://github.com/piwi"
+  }],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.3.0",
+    "piwi/php-quick-lib": "dev-dev",
+    "piwi/html5-quick-template": "1.*",
+    "piwi/markdown-extended": "dev-master"
+  },
+  "config": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  }
+}
