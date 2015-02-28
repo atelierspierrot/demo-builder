@@ -5,8 +5,8 @@
   "interface_filename": "index.php",
   "mde_template_filename": "mde-template.html",
   "pages_dirname": "pages",
-  "mde_binary": "vendor/markdown-extended/bin/markdown-extended",
-  "html5_quick_template": "vendor/html5-quick-template/html5-quick-template.html.php",
+  "mde_binary": "bin/markdown-extended",
+  "html5_quick_template": "bin/html5-quick-template.html.php",
   "default_page": "home",
   "default_language": "en",
   "extensions_callbacks": {

@@ -2,9 +2,7 @@
 
 // include the PHPQuickLibrary if needed
 if (!defined('PHPQLIB_NAME')) {
-    if (file_exists($phpqlib = __DIR__.'/../php-quick-lib/php-quick-lib.php')) {
-        require_once $phpqlib;
-    } elseif (file_exists($phpqlib = __DIR__.'/vendor/piwi/php-quick-lib/php-quick-lib.php')) {
+    if (file_exists($phpqlib = __DIR__.'/bin/php-quick-lib.php')) {
         require_once $phpqlib;
     } else {
         die('PHP-Quick-Library not found!');
@@ -186,6 +184,7 @@ function parse_markdown_file($file_path, array $params = array(), $mde_template_
     prepare_markdown_template($mde_template_path);
     $params = array_merge(settings(), $params);
     extract($params);
+    $mde_binary = get_demo_builder_file_path($mde_binary);
     $cmd = "$mde_binary --template=$mde_template_path $file_path";
     list($ctt, $status) = execute($cmd);
     if ($status==0) {
