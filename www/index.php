@@ -28,6 +28,8 @@ $views_dir = $root_dir . $ds . 'src' . $ds . 'DemoBuilder' . $ds . 'views' . $ds
 // the Composer autoloader
 if (file_exists($a = $root_dir.'/vendor/autoload.php')) {
     require_once $a;
+} elseif (file_exists($b = $root_dir.'/src/vendor/autoload.php')) {
+    require_once $b;
 } else {
     die('You need to run Composer on your project to use this interface!');
 }
