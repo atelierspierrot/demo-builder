@@ -5,7 +5,12 @@
     "keywords": [ "php", "template", "demo" ],
     "homepage": "http://github.com/atelierspierrot/demobuilder",
     "license": "GPL-3.0",
-    "authors": [{
+    "authors": [
+        {
+            "name": "Les Ateliers Pierrot & contributors",
+            "email": "contact@ateliers-pierrot.fr",
+            "homepage": "http://www.ateliers-pierrot.fr/"
+        },{
             "name": "Pierre Cassat",
             "email": "me@e-piwi.fr",
             "homepage": "http://github.com/piwi"
@@ -20,13 +25,12 @@
         "atelierspierrot/templatengine": "dev-master",
         "piwi/markdown-extended": "dev-master"
     },
-    "autoload": {
-        "psr-0": { 
-            "Commons": "src",
-            "FileSystem": "src",
-            "DemoBuilder": "src",
-            "DemoBuilder_": "src"
-        }
+    "require-dev": { "sami/sami": "dev-master" },
+    "autoload": { "psr-0": { "DemoBuilder": "src" } },
+    "extra": {
+        "layouts": "src/DemoBuilder/views",
+        "views": "src/DemoBuilder/views",
+        "views-functions": "src/DemoBuilder/view_functions.php"
     },
     "scripts": { "post-autoload-dump": "Assets\\Composer\\TemplateEngineInstaller::postAutoloadDump" },
     "config": {

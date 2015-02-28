@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Test & documentation of PHP "Library" package</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="assets/html5boilerplate/css/normalize.css" />
+    <link rel="stylesheet" href="assets/html5boilerplate/css/main.css" />
+    <script src="assets/html5boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+	<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+    <header id="top" role="banner">
+        <hgroup>
+            <h1>jQuery AccessKey</h1>
+            <h2 class="slogan">a jQuery plugin to manage accesskeys on a document model</h2>
+        </hgroup>
+        <div class="hat">
+            <p>These pages show and demonstrate the use and functionality of the <a href="http://github.com/piwi/jQuery-AccessKey">jQuery AccessKey plugin</a> you just downloaded, based on the <a href="http://jquery.com/">jQuery javascript library</a>.</p>
+            <p>You've downloaded the whole plugin's package ; to test it in your system, please see <a href="classic.html">the examples pages</a> ; to learn how to use it and the required files, please see <a href="doc.html#clientusage">the usage page</a> ; finally, a complete documentation is available in <a href="doc.html#doc">the doc page</a>.</p>
+            <p>If you encounter errors to view these pages, please see the <a href="index.html#demo_note">demo note</a>.</p>
+        </div>
+    </header>
+
+	<nav>
+		<h2>Map of the package</h2>
+        <ul id="navigation_menu" class="menu" role="navigation">
+            <li><a href="index.html">Homepage</a></li>
+            <li><a href="#">Examples</a><ul>
+                <li><a href="classic.html">Classic example</a></li>
+                <li><a href="tags.html">Tags review</a></li>
+                <li><a href="jquery_ui.html">jQuery UI inclusion</a></li>
+            </ul></li>
+            <li><a href="doc.html#technic">Technical infos</a><ul>
+                <li><a href="doc.html#compat">Compatibility</a></li>
+                <li><a href="doc.html#specs">Specifications</a></li>
+                <li><a href="doc.html#basis">Plugin basis</a></li>
+            </ul></li>
+            <li><a href="doc.html#clientusage">Usage</a><ul>
+                <li><a href="doc.html#clientusage">For client users</a></li>
+                <li><a href="doc.html#developerusage">For developers</a></li>
+            </ul></li>
+            <li><a href="doc.html#doc">Documentation</a><ul>
+                <li><a href="doc.html#options">Options</a></li>
+                <li><a href="doc.html#methods">Methods</a></li>
+                <li><a href="doc.html#internalmethods">Internal Methods</a></li>
+                <li><a href="doc.html#callbacks">Callbacks</a></li>
+                <li><a href="doc.html#handlers">Global handlers</a></li>
+            </ul></li>
+            <li><a href="test_suite.html">Browser test suite</a></li>
+        </ul>
+
+        <div class="info">
+            <p><a href="http://github.com/piwi/jQuery-AccessKey">See online on GitHub</a></p>
+            <p class="comment">The sources of this plugin are hosted on <a href="http://github.com">GitHub</a>. To follow sources updates, report a bug or read opened bug tickets and any other information, please see the GitHub website above.</p>
+        </div>
+
+        <div class="info">
+            <!-- AddThis Button BEGIN -->
+            <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
+            <a href="http://github.com/piwi/jQuery-AccessKey" target="_blank" title="See on GitHub">
+                <span class="at16nc at300bs at15nc atGitHub"></span>
+            </a>
+            <a class="addthis_button_email"></a>
+            <a class="addthis_button_print"></a>
+            <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+            </div>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=undefined"></script>
+            <!-- AddThis Button END -->
+        </div>
+
+    	<p class="credits" id="user_agent"></p>
+	</nav>
+
+    <div id="content" role="main">
+
+        <div class="info" id="dev_block">
+	    	<p><a id="source_handler" class="handler" title="See source code of the demonstration content below">See javascript source code</a></p>
+    		<div id="source"><pre class="code" id="source_block_content"></pre></div>
+        </div>
+
+        <div class="info" id="jsconsole">
+            <p><a class="handler strong noimg">Javascript Console</a></p>
+            <div id="console"></div>
+        </div>
+
+        <article>
+
+<h2>Test with inline accesskeys</h2>
+<ul>
+    <li><a href="#link_A_url" id="link_A" tabindex="1" class="access-link" title="My title for first test link" accesskey="A">Test for accesskey "A"</a></li>
+    <li><a href="#link_B_url" id="link_B" tabindex="2" class="access-link" title="My title for second test link" accesskey="B">Test for accesskey "B"</a></li>
+    <li><a href="http://www.test.com/" id="link_C" tabindex="3" class="access-link" title="My title for third test link" accesskey="C">Test for accesskey "C"</a></li>
+</ul>
+
+<h2>Test with javascript defined accesskeys</h2>
+<ul>
+    <li><a id="link_D" title="My title for first test link" tabindex="4">Test for accesskey "D"</a></li>
+    <li><a href="#link_E_url" id="link_E" title="My title for second test link" tabindex="5">Test for accesskey "E"</a></li>
+    <li><a href="http://www.test.com/" id="link_F" title="My title for third test link" tabindex="6">Test for accesskey "F"</a></li>
+</ul>
+
+<h2>Test with accesskeys on form inputs</h2>
+
+<form name="test_form_1" id="test_form_1" action="#" method="get">
+    <fieldset>
+        <label>Your name <input type="text" id="input_G" name="name" value="" accesskey="G" /></label>
+        <label>Your mother's name <input type="text" id="input_H" name="mother_name" value="" /></label>
+    </fieldset>
+    <input type="submit" id="btn_I" accesskey="I" />
+    <input type="reset" id="btn_J" accesskey="J" />
+</form>
+
+<h2>Test with some click handlers</h2>
+
+<p><a href="http://test.com/" id="test_clickHandler" onClick="console.debug('triggering onClick')">test clickHandler</a></p>
+<p><a href="#href_link" id="test_clickHandler_bis" onClick="console.debug('triggering onClick')">test clickHandler with href following</a></p>
+
+<h2>Test with accesskeys in a text</h2>
+
+<p>Sed ut perspiciatis unde omnis <a href="" class="intext" accesskey="K">iste natus error</a> sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. <a href="" class="intext" accesskey="L">Nemo enim ipsam voluptatem quia voluptas</a> sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, <a href="" class="intext" accesskey="M">qui dolorem ipsum quia dolor sit amet</a>, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+
+<h2>Test of plugin handlers</h2>
+<p>Plugin is currently <strong><span id="plugin_status"></span></strong>.&nbsp;<input type="button" id="plugin_disable" onclick="disablePlugin();" value="Disable plugin" /><input type="button" id="plugin_enable" onclick="enablePlugin();" value="Enable plugin" /></p>
+<ul>
+    <li><a onclick="return $.fn.accesskey.toggleAll({showOptions: 'slow', hideOptions: 'slow'});">Toggle all tooltips</a></li>
+    <li><a onclick="return TooltipTest.accesskey('showAll', {showOptions: 'slow', hideOptions: 'slow'});">Show all tooltips of the first paragraph</a> (from first call of the plugin)</li>
+    <li><a onclick="return TooltipTest.accesskey('hideAll', {showOptions: 'slow', hideOptions: 'slow'});">Hide all tooltips of the first paragraph</a> (from first call of the plugin)</li>
+    <li><a onclick="return testOverview();">test plugin's overview</a></li>
+</ul>
+
+        </article>
+    </div>
+
+    <footer id="footer">
+		<div class="credits float-left">
+		    This page is <a href="" title="Check now online" id="html_validation">HTML5</a> & <a href="" title="Check now online" id="css_validation">CSS3</a> valid.
+		</div>
+		<div class="credits float-right">
+		    <a href="http://github.com/piwi/jQuery-AccessKey">jQuery AccessKey</a> plugin by <a href="https://github.com/pierowbmstr">Piero Wbmstr</a> under <a href="http://opensource.org/licenses/GPL-3.0">GNU GPL v.3</a> license.
+		</div>
+    </footer>
+
+    <div class="back_menu" id="short_navigation">
+        <a href="#" title="See navigation menu" id="short_menu_handler"><span class="text">Navigation Menu</span></a>
+        &nbsp;|&nbsp;
+        <a href="#top" title="Back to the top of the page"><span class="text">Back to top&nbsp;</span>&uarr;</a>
+        <ul id="short_menu" class="menu" role="navigation"></ul>
+    </div>
+
+    <div id="message_box" class="msg_box"></div>
+
+<!-- jQuery lib -->
+<script src="assets/jquery/jquery-1.9.1.min.js"></script>
+
+<!-- HTML5 boilerplate -->
+<script src="assets/html5boilerplate/js/plugins.js"></script>
+
+<!-- jQuery.highlight plugin -->
+<script src="assets/jquery/jquery.highlight.js"></script>
+
+<!-- jQuery.tablesorter plugin -->
+<script src="assets/jquery/jquery.tablesorter.min.js"></script>
+
+<!-- scripts for demo -->
+<script src="assets/scripts.js"></script>
+
+<script>
+$(function() {
+    initBacklinks();
+    activateMenuItem();
+    getToHash();
+    buildFootNotes();
+    addCSSValidatorLink('assets/styles.css');
+    addHTMLValidatorLink();
+    $("#user_agent").html( navigator.userAgent );
+    $('pre.code').highlight({source:0, indent:'tabs', code_lang: 'data-language'});
+    initHandler('source');
+    $('#source_block_content').text( $('#js_code').html() );
+});
+</script>
+<script id="js_code">
+// activate plugin debug (infos are written in console)
+$.fn.accesskey.defaults.debug = true;
+
+// use the HELP tool
+$.fn.accesskey.defaults.showHelp = true;
+
+// declaration of the TooltipTest variable for the global window
+var TooltipTest;
+
+// on document ready call
+$(function() {
+    var UserConsole = $('#console');
+
+    TooltipTest = $(".access-link")
+        .accesskey({
+            onCreate: function(){
+                console.debug('"onCreate" user defined call, receiving args ', arguments);
+            },
+            onShow: function(){
+                console.debug('"onShow" user defined call, receiving args ', arguments);
+            },
+            onHide: function(){
+                console.debug('"onHide" user defined call, receiving args ', arguments);
+            },
+            onDestroy: function(){
+                console.debug('"onDestroy" user defined call, receiving args ', arguments);
+            }
+        })
+        .click(function(){
+            var _name = $(this).attr('id');
+            UserConsole.append('Link '+_name+' just clicked !');
+        });
+
+    // let's see what is our result object
+    console.debug('TooltipTest= ', TooltipTest);
+
+    var linkd = $("#link_D")
+        .accesskey({
+            accesskey: "D", text: "Option text from javascript call",
+            propagateOnce: true
+        })
+        .click(function(){
+            UserConsole.append('OK, click on link D triggered !');
+        });
+
+    // test of option retrieving
+    console.debug('link_D at option "text" has value: ', linkd.accesskey('getOption', 'text'));
+
+    console.debug('link_D accesskey data: ', linkd.accesskey('getData'));
+
+    $("#link_E")
+        .accesskey({
+            accesskey: "E", text: "Option text from javascript call",
+            showOptions: "slow", hideOptions: "slow"
+        })
+        .click(function(){
+            UserConsole.append('OK, click on link D triggered !');
+        });
+
+    $("#input_G")
+        .accesskey({
+            accesskey: "G", text: "Typing Ctrl+Al+G will select this field"
+        });
+/*
+// error because duplicate accesskey
+    $("#input_H")
+        .accesskey({
+            accesskey: "H", text: "This will send an error as the 'H' accesskey is reserved for plugin help"
+        });
+*/
+    $("#input_H")
+        .accesskey({
+            accesskey: "Z", text: "This will send an error as the 'H' accesskey is reserved for plugin help"
+        });
+
+    // simple call
+    $(".intext").accesskey();
+
+    $('#test_form_1').submit(function(){
+        UserConsole.append('formSubmit OK, get data :'+$(this).serialize());
+        return false;
+    });
+
+    // special on/off plugin
+    if ($.fn.accesskey.isEnabled()) { enablePlugin(); }
+    else { disablePlugin(); }
+
+    // test of "click" event on accesskey press
+    // : all events below may be triggered but href must NOT be followed
+    $('#test_clickHandler').accesskey({
+        accesskey: 'R',
+        text: 'Press "Ctrl+Alt+R to access this link',
+        onClick: 'follow_href'
+    });
+    $('#test_clickHandler').click(function(){
+        console.debug('triggering click()');
+        if ($.fn.accesskey.isEnabled()) return false;
+    });
+    $('#test_clickHandler').on('click', function(){
+        console.debug('triggering on(click)');
+        if ($.fn.accesskey.isEnabled()) return false;
+    });
+    $('#test_clickHandler').bind('click', function(){
+        console.debug('triggering bind(click)');
+        if ($.fn.accesskey.isEnabled()) return false;
+    });
+
+    // test of "click" event on accesskey press
+    // : all events below may be triggered but href must NOT be followed
+    $('#test_clickHandler_bis').accesskey({
+        accesskey: 'S',
+        text: 'Press "Ctrl+Alt+S to access this link',
+        onClick: 'follow_href'
+    });
+    $('#test_clickHandler_bis').click(function(){
+        console.debug('triggering click()');
+    });
+    $('#test_clickHandler_bis').on('click', function(){
+        console.debug('triggering on(click)');
+    });
+    $('#test_clickHandler_bis').bind('click', function(){
+        console.debug('triggering bind(click)');
+    });
+
+});
+
+function testOverview() {
+    var tbl = $.fn.accesskey.overview();
+    console.debug(tbl);
+}
+
+function enablePlugin() {
+    if ($.fn.accesskey.enable()) {
+        $('#plugin_status').html('enabled');
+        $('#plugin_enable').hide();
+        $('#plugin_disable').show();
+    }
+}
+
+function disablePlugin() {
+    if ($.fn.accesskey.disable()) {
+        $('#plugin_status').html('disabled');
+        $('#plugin_enable').show();
+        $('#plugin_disable').hide();
+    }
+}
+
+</script>
+</body>
+</html>

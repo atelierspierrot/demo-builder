@@ -1,0 +1,115 @@
+<?php
+if (!isset($builder)) die('ERROR - No builder object passed to the layout!');
+
+if (!isset($header_template)) $header_template = 'header.htm';
+if (!isset($nav_template)) $nav_template = 'nav.htm';
+if (!isset($footer_template)) $footer_template = 'footer.htm';
+if (!isset($page_template)) $page_template = 'page.htm';
+if (!isset($back_menu_template)) $back_menu_template = 'back_menu.htm';
+?>
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> <![endif]-->
+    <title><?php _echo($builder->page_title); ?></title>
+<?php if (!empty($builder->page_description)): ?>
+    <meta name="description" content="<?php _echo($builder->page_description); ?>" />
+<?php endif; ?>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="assets/html5boilerplate/css/normalize.css" />
+    <link rel="stylesheet" href="assets/html5boilerplate/css/main.css" />
+    <script src="assets/html5boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+	<link rel="stylesheet" href="assets/styles.css" />
+    <!--[if lt IE 5.5]> <link rel="stylesheet" href="assets/styles_ie_lt5.5.css" /> <![endif]-->
+    <!--[if gte IE 5.5]> <link rel="stylesheet" href="assets/styles_ie_gte5.5.css" /> <![endif]-->
+</head>
+<body>
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+    <header id="top" role="banner">
+<?php _render($header_template); ?>
+    </header>
+
+	<nav>
+<?php _render($nav_template); ?>
+	</nav>
+
+    <div id="content" role="main">
+<?php _echo($builder->precontent); ?>
+        <article>
+<?php _echo($builder->content); ?>
+        </article>
+<?php _echo($builder->postcontent); ?>
+    </div>
+
+    <footer id="footer">
+<?php _render($footer_template); ?>
+    </footer>
+
+    <div class="back_menu" id="short_navigation">
+<?php _render($back_menu_template); ?>
+    </div>
+
+    <div id="message_box" class="msg_box"></div>
+    <a id="bottom"></a>
+
+<!-- jQuery lib -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="assets/jquery/jquery-last.min.js"><\/script>')</script>
+<script>$.uiBackCompat = false;</script>
+
+<!-- HTML5 boilerplate -->
+<script src="assets/html5boilerplate/js/plugins.js"></script>
+
+<!-- jQuery.highlight plugin -->
+<script src="assets/jquery/jquery.highlight.js"></script>
+
+<!-- jQuery.tablesorter plugin -->
+<script src="assets/jquery/jquery.tablesorter.min.js"></script>
+
+<!-- scripts for demo -->
+<script src="assets/scripts.js"></script>
+
+<script>
+$(function() {
+    initBacklinks();
+    activateNavigationMenu();
+    getToHash();
+    buildFootNotes();
+    addCSSValidatorLink('assets/styles.css');
+    addHTMLValidatorLink();
+    $("#user_agent").html( navigator.userAgent );
+
+    $('pre.code').highlight({source:0, indent:'tabs', code_lang: 'data-language'});
+
+    $('pre').each(function(i,o) {
+        var dl = $(this).attr('data-language');
+        if (dl) {
+            $(this).addClass('code')
+                .highlight({indent:'tabs', code_lang: 'data-language'});
+        }
+    });
+});
+</script>
+
+<?php if (!empty($builder->js_code)): ?>
+<script id="js_code">
+<?php _echo($builder->js_code); ?>
+</script>
+<script>
+$(function() {
+    initHandler('source');
+    $('#source_block_content').text( $('#js_code').html() );
+});
+</script>
+<?php endif; ?>
+
+</body>
+</html>

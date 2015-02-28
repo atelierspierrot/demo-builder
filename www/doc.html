@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Test & documentation of PHP "Library" package</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="assets/html5boilerplate/css/normalize.css" />
+    <link rel="stylesheet" href="assets/html5boilerplate/css/main.css" />
+    <script src="assets/html5boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+	<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+    <header id="top" role="banner">
+        <hgroup>
+            <h1>jQuery AccessKey</h1>
+            <h2 class="slogan">a jQuery plugin to manage accesskeys on a document model</h2>
+        </hgroup>
+        <div class="hat">
+            <p>These pages show and demonstrate the use and functionality of the <a href="http://github.com/piwi/jQuery-AccessKey">jQuery AccessKey plugin</a> you just downloaded, based on the <a href="http://jquery.com/">jQuery javascript library</a>.</p>
+            <p>You've downloaded the whole plugin's package ; to test it in your system, please see <a href="classic.html">the examples pages</a> ; to learn how to use it and the required files, please see <a href="doc.html#clientusage">the usage page</a> ; finally, a complete documentation is available in <a href="doc.html#doc">the doc page</a>.</p>
+            <p>If you encounter errors to view these pages, please see the <a href="index.html#demo_note">demo note</a>.</p>
+        </div>
+    </header>
+
+	<nav>
+		<h2>Map of the package</h2>
+        <ul id="navigation_menu" class="menu" role="menu">
+            <li><a href="index.html">Homepage</a></li>
+            <li><a href="#">Examples</a><ul>
+                <li><a href="classic.html">Classic example</a></li>
+                <li><a href="tags.html">Tags review</a></li>
+                <li><a href="jquery_ui.html">jQuery UI inclusion</a></li>
+            </ul></li>
+            <li><a href="doc.html#technic">Technical infos</a><ul>
+                <li><a href="doc.html#compat">Compatibility</a></li>
+                <li><a href="doc.html#specs">Specifications</a></li>
+                <li><a href="doc.html#basis">Plugin basis</a></li>
+            </ul></li>
+            <li><a href="doc.html#clientusage">Usage</a><ul>
+                <li><a href="doc.html#clientusage">For client users</a></li>
+                <li><a href="doc.html#developerusage">For developers</a></li>
+            </ul></li>
+            <li><a href="doc.html#doc">Documentation</a><ul>
+                <li><a href="doc.html#options">Options</a></li>
+                <li><a href="doc.html#methods">Methods</a></li>
+                <li><a href="doc.html#internalmethods">Internal Methods</a></li>
+                <li><a href="doc.html#callbacks">Callbacks</a></li>
+                <li><a href="doc.html#handlers">Global handlers</a></li>
+            </ul></li>
+            <li><a href="test_suite.html">Browser test suite</a></li>
+        </ul>
+
+        <div class="info">
+            <p><a href="http://github.com/piwi/jQuery-AccessKey">See online on GitHub</a></p>
+            <p class="comment">The sources of this plugin are hosted on <a href="http://github.com">GitHub</a>. To follow sources updates, report a bug or read opened bug tickets and any other information, please see the GitHub website above.</p>
+        </div>
+
+    	<p class="credits" id="user_agent"></p>
+	</nav>
+
+    <div id="content" role="main">
+
+        <article>
+
+<h2 id="technic">Technical informations</h2>
+
+<h3 id="compat">Compatibility</h3>
+
+<p>The plugin was developed under <strong>jQuery 1.9</strong> and (<em>for now</em>) had not been tested on older versions.</p>
+
+<p>The plugin functionalities should be compatible with any web browser on any operating system.</p>
+
+<p>If you find any bug or mis-compatibility, please post a message on website <a href="http://github.com/piwi/jQuery-AccessKey/issues" title="See online">http://github.com/piwi/jQuery-AccessKey/issues</a> with a description of the error in code or rendering. A test suite using <a href="http://api.qunitjs.com/" title="See online">jQuery QUnit</a> is <a href="test_suite.html">proposed in this package</a>.</p>
+
+<h3 id="specs">Condensed summary of specifications</h3>
+
+<p>As we can read in the <a href="http://www.w3.org/TR/html401/interact/forms.html#h-17.11.2" title="See online">HTML4's W3C Recommendations</a>, the <var>accesskey</var> attribute can be used on the following tags <span class="note">I based this work on the W3C <a href="http://www.w3.org/WAI/UA/TS/html401/Overview.html"><em>UUAG Test Suite</em></a>.</span>:</p>
+
+<ul>
+    <li><a href="http://www.w3.org/TR/html401/struct/links.html#edef-A" title="See online">a</a> : the link tag, for which using the accesskey may ask the user agent to follow the link (<em>follow the <var>href</var> attribute</em>),</li>
+    <li><a href="http://www.w3.org/TR/html401/struct/objects.html#edef-AREA" title="See online">area</a> : for which using the accesskey may run the area's action,</li>
+    <li><a href="http://www.w3.org/TR/html401/interact/forms.html#edef-BUTTON" title="See online">button</a> : for which using the accesskey may trigger a button's click,</li>
+    <li><a href="http://www.w3.org/TR/html401/interact/forms.html#edef-INPUT" title="See online">input</a> : for which using the accesskey may select or focus the form field,</li>
+    <li><a href="http://www.w3.org/TR/html401/interact/forms.html#edef-LABEL" title="See online">label</a> : for which using the accesskey may give the focus to the label, which gives it to its field (<em>through its <var>for</var> attribute</em>),</li>
+    <li><a href="http://www.w3.org/TR/html401/interact/forms.html#edef-LEGEND" title="See online">legend</a> : for which using the accesskey may give the focus to the concerned fieldset (<em>there, the specifications are not very clear : the best practice may be to give the focus to the first fieldset's field</em>),</li>
+    <li><a href="http://www.w3.org/TR/html401/interact/forms.html#edef-TEXTAREA" title="See online">textarea</a> : for which using the accesskey may give the focus to the field.</li>
+</ul>
+
+<p>But the <a href="http://www.w3.org/TR/html5/editing.html" title="See online">HTML5's W3C Recommendations</a> do not restrict the "accesskey" usage allowing its definition for any element.</p>
+
+<p>Another difference is in the way to use the attribute : HTML4 says you must define the <var>accesskey</var> as a single character while HTML5 allows a list of characters, separated by space, where user agent must choose the first one available on the current user's device.</p>
+
+<p>Be careful when developing about these usage differences between the HTML4 and HTML5 specifications.</p>
+
+<h3 id="basis">Plugin implementations</h3>
+
+<p>The plugin takes the HTML5 <u>"all elements" unrestraint rule</u> while it (<em>for now</em>) <u>do not allow to assign a list of accesskeys</u> but a single character, as in HTML4 (<em>take a look at the <a href="#todo">Todo section</a> of this documentation to learn more</em>).</p>
+
+<p>As it seems to be the case in many operating systems, plugin considers any pressed key as a capital letter, even if the system finally attaches a lowercase key character to it. Be very careful at this point : it restricts available accesskeys to <var>[A-Z]</var> non-special uppercase characters and <var>[0-9]</var> numeric characters.</p>
+
+<p>Furthermore, the default behavior of pressing an access-key constructed by the plugin depends on the concerned element type. These default behaviors are listed below ; note that you can overwrite them defining the <var>onClick</var> option value for each instances.</p>
+
+<ul>
+    <li>for a tag containing an <var>href</var> attribute (<em>such as <var>a</var> and <var>area</var> elements</em>), a click is triggered so the user agent is requested to follow the <var>href</var> value ; this can be forced using the <var>follow_href</var> value of option <var>onClick</var>.</li>
+    <li>for a tag representing a form input field, the field is "selected" (<em>the user can directly enter a value</em>) ; this means that input type <var>checkbox</var> or <var>radio</var> are toggled (<em><var>checked</var> if they were not or <var>unchecked</var> if they were checked</em>) using the accesskey ; this can be forced using the <var>select</var> value of option <var>onClick</var>.</li>
+    <li>for a tag representing a button, it is "selected" and it's action is toggled ; this can be forced using the <var>submit</var> value of option <var>onClick</var> ; be very careful here: <strong>this is the default plugin's behavior for "submit" or "reset" buttons or inputs</strong>, which means that the concernend form will be submitted or reset.</li>
+    <li>for a label tag of a form field or button, the corresponding field is "focused" and that's it ; field's action is NOT toggled ; this can be forced using the <var>focus</var> value of option <var>onClick</var>.</li>
+</ul>
+
+        </article>
+        <article>
+
+<h2 id="clientusage">Usage for client users</h2>
+
+<h3>First thoughts</h3>
+
+<p>As described in <a href="http://en.wikipedia.org/wiki/Access_key" title="Wikipedia page for 'accesskeys'">this page of Wikipedia</a>, the required combination of keys pressed to finaly access the accesskey of an element largely differs between browsers and operating systems. 
+Let's say in most cases, Windows users have to press `Ctrl` key first and Mac OSX users have to press `Alt` key first. In some cases, the `Shift` key is also required or a combination of the two keys `Ctrl + Alt`.</p>
+
+<p>To build this plugin, I first let these default behaviors by their own, testing the examples by pressing the OS/browser specific required keys first. Then I realize that it was finally part of the reasons why accesskeys are considered by most of the concerned people as a failure in accessibility recommandations.</p>
+
+<p>Indeed, it seems logical that the users do not have the habit of a behavior that would be specific to each software and environnement ... Imagine that every store where you shop accepts a different currency, you would be lost!</p>
+
+<p>So, regarding what OS or softwares does with the common shortcuts, I decided to choose a unique and uniform keys combination, making the usability of the plugin cross-platform and cross-browser and allowing final user to start construct its navigation habit.</p>
+
+<h3>And the winner is ...</h3>
+
+<p>In conclusion, I rebuilt the plugin code to work with a specific and unique keys combination to call an accesskey, with some customizable options to allow developers to use their own <span class="note">Well, this is part of the <em>work to do</em> ... allowing developer to really fit this behavior to its need. Any contribution is very welcome ;)</span>.</p>
+
+<p>By default, the plugin works with invokation like:</p>
+
+<div class="info" style="text-align: center; font-weight: bold;">
+<var>Alt</var> key + <var>Ctrl</var> key + <var>AccessKey</var>
+</div>
+
+<h2 id="developerusage">Usage for developers</h2>
+
+<h3>Requirements</h3>
+
+<p>As it depends on <strong>jQuery</strong>, you must include the library first, as for any plugin.</p>
+
+<p>Then, the only required file is the javascript code. Some CSS definitions are proposed with the plugin, that are required only if you use the default plugin's tooltips setup.</p>
+<pre class="code" data-language="html">
+&lt;!-- jQuery (required) --&gt;
+&lt;script src="../js/jquery-1.9.0.js"&gt;&lt;/script&gt;
+
+&lt;!-- jQuery AccesKey (required) --&gt;
+&lt;script src="../src/jquery-accesskey.js"&gt;&lt;/script&gt;
+
+&lt;!-- jQuery AccesKey default CSS (optional) --&gt;
+&lt;link rel="stylesheet" href="../src/jquery-accesskey.css" type="text/css" media="screen" /&gt;
+</pre>
+
+<h3>On document ready</h3>
+
+<p>The plugin adds the <var>.accesskey()</var> function to jQuery, that had to be called after document is ready:</p>
+
+<pre class="code">
+$(function() {
+    $('selection').accesskey();
+});</pre>
+
+<p>You can specify some options or callbacks to your call:</p>
+
+<pre class="code">
+$(function() {
+    $('selection').accesskey({
+        option_name: "my user value",
+        my_callback: function() {
+            // your stuff ...
+        }
+    });
+});
+</pre>
+
+<h3>Full overview</h3>
+
+<p>The code below is the working code on the <a href="classic.html">classic example</a> demonstration.
+
+<pre class="code">
+
+// re-define a plugin default setting for all instances
+$.fn.accesskey.defaults.debug = true;
+
+// on document ready call
+$(function() {
+
+    // a simple call on a classic jQuery selection
+    $(".intext").accesskey();
+
+    // a simple call on a classic jQuery selection specifying the accesskey and the help text for the element
+    $("#link_A")
+        .accesskey({
+            accesskey: "A", text: "Typing Ctrl+Al+A will select this link"
+        });
+
+    // a simple call on a classic jQuery selection with specific options
+    $("#link_B")
+        .accesskey({
+            accesskey: "B", text: "Option text from javascript call",
+            showOptions: "slow", hideOptions: "slow"
+        })
+        .click(function(){
+            alert('Link '+$(this).attr('id')+' just clicked !');
+        });
+
+    // a complete call with specific user callback options
+    var AK_var = $(".access-link")
+        .accesskey({
+            onCreate: function(){
+                console.debug('"onCreate" user defined call, receiving args ', arguments);
+                // your stuff ...
+            },
+            onShow: function(){
+                console.debug('"onShow" user defined call, receiving args ', arguments);
+                // your stuff ...
+            },
+            onHide: function(){
+                console.debug('"onHide" user defined call, receiving args ', arguments);
+                // your stuff ...
+            },
+            onDestroy: function(){
+                console.debug('"onDestroy" user defined call, receiving args ', arguments);
+                // your stuff ...
+            }
+        })
+        .click(function(){
+            alert('Link '+$(this).attr('id')+' just clicked !');
+        });
+
+});
+</pre>
+
+        </article>
+        <article>
+
+<h2 id="doc">Documentation</h2>
+
+<aside id="jq_helpbox">
+  <h2>Useful links on jQuery API documentation</h2>
+  <ul class="menu">
+        <li><a href="http://api.jquery.com/show/">jQuery.show()</a></li>
+        <li><a href="http://api.jquery.com/hide/">jQuery.hide()</a></li>
+        <li><a href="http://api.jquery.com/bind/">jQuery.bind()</a></li>
+        <li><a href="http://api.jquery.com/data/">jQuery.data()</a></li>
+        <li><a href="http://api.jquery.com/category/events/event-object/">jQuery.Event()</a></li>
+  </ul>
+  <h2>Search in jQuery API documentation</h2>
+  <form action="http://api.jquery.com/" method="get">
+    <input type="text" name="s" value="" placeholder="Type your search" title="Type your search and press enter" />
+  </form>
+</aside>  
+
+<h3 id="createinstance">Creating an instance</h3>
+
+<p>Full usage review of the <var>$.fn.accesskey</var> function:</p>
+
+<pre class="code">
+$( jQuery selector ).accesskey();
+
+$( jQuery selector ).accesskey( {options} );
+
+$( jQuery selector ).accesskey( method [, {options}] );
+</pre>
+
+<p>All arguments are optional. When the first one is an object, it's considered as a set of options to extend the default settings of the plugin. See <a href="#options">"options" section</a>, the <a href="#tooltips">specific "tooltips" section</a> and the <a href="#callbacks">"callbacks" section</a> of this documentation for more infos.
+You can also access a public method of the plugin writing it's name as first parameter. In this case, you can set some options as second parameter. See <a href="#methods">"methods" section</a> for more infos.</p>
+
+<p>It is important to understand that the <var>accesskey</var> function works on a set of jQuery selected elements. For example, you can't write directly <var>$.accesskey(options)</var> because the plugin will work on nothing.
+You have to write something like <var>$('.a-class-of-objects').accesskey(options)</var> to initiate the plugin on a collection of jQuery elements (<em>a set of DOM selections</em>).</p>
+
+<p>Knowing that, the simpliest usage of the plugin, in a page where all accesskeys are defined in the HTML code (<em>using the <var>accesskey</var> attribute of tags</em>) should be something like the following, which will select all DOM elements containing an <var>accesskey</var> attribute and pass them to the <var>accesskey()</var> plugin:</p>
+<pre class="code">
+$('[accesskey]').accesskey();
+</pre>
+
+<p>It returns a jQuery object collection, for chainability:</p>
+
+<pre class="code">
+$( 'my jQuery selector' ).accesskey().bind( 'my event' );
+</pre>
+
+<p>Contrary to what had been said, some global methods, concerning the plugin itself and not a jQuery selection, can be accessed directly writing:</p>
+<pre class="code">
+$.fn.accesskey.method();
+</pre>
+<p>See <a href="#handlers">"global handlers" section</a> of this documentation for more infos.</p>
+
+<h3 id="manip">Elements manipulation</h3>
+
+<p>The plugin works on each element of the jQuery selection rebuilding it to record in the HTML tag the required infos. These data are recorded using the HTML5 feature <var>data-...</var> constructing each element like:</p>
+
+<pre class="code" data-language="html">
+&lt;a id="..." class="..." href="..."
+    accesskey="" title=""
+    data-accesskey="X" data-accesskeyhelper="[X] My help text"&gt;
+        ...
+&lt;/a&gt;
+</pre>
+
+<p>In this example, the <var>id</var> and <var>class</var> attributes are not modified ; the <var>accesskey</var> is empty to avoid its classic behavior ; and the <var>title</var> attribute is left unmodified if a text is defined as an instance option, otherwise, as the title will be used to build the tooltip's help message, it is removed from the original element.
+The two attributes <var>data-accesskey</var> and <var>data-accesskeyhelper</var> are created to store the single letter accesskey and the full help message.</p>
+
+<p>As they are added to the element in the HTML document, you can access these attributes like you do for others, and eventually modify them at runtime.</p>
+
+<h3 id="options">Options</h3>
+
+<p>The plugin propose a set of options you can overwrite to your convenience. To set one of these options globally for any future plugin usage, write:</p>
+
+<pre class="code">
+$.fn.accesskey.defaults.optionName = value;
+</pre>
+
+<p>To set one of these options for a selected collection of jQuery objects, write:</p>
+
+<pre class="code">
+$('selection').accesskey( { optionName: value } );
+</pre>
+
+<p>To retrieve the value of an option for a plugin's instance, you can use:</p>
+
+<pre class="code">
+var myAK = $('selection').accesskey( { optionName: value } );
+
+var option_value = myAK.accesskey('getOption', 'optionName');
+</pre>
+
+<p>Here is the list of the plugin options, with their default values:</p>
+
+<table class="tablesorter">
+    <thead><tr>
+        <th title="Sort entries by this column value">Option name</th>
+        <th title="Sort entries by this column value">Default value</th>
+        <th title="Sort entries by this column value">Type</th>
+        <th title="Sort entries by this column value">Option action</th>
+    </tr></thead>
+    <tbody>
+
+    <tr>
+        <td class="var"><var>accesskey</var></td>
+        <td class="val">null</td>
+        <td class="val">string</td>
+        <td>The accesskey to set for the element (one single character in <var>[A-Z0-9]</var> - alpha-numeric non-special uppercase characters)</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>text</var></td>
+        <td class="val">null</td>
+        <td class="val">string</td>
+        <td>The helper text to show in the element tooltip (the <var>title</var> attribute will be used by default)</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>useTitle</var></td>
+        <td class="val">true</td>
+        <td class="val">bool</td>
+        <td>Use the title as default tooltip message</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>propagateOnce</var></td>
+        <td class="val">false</td>
+        <td class="val">bool</td>
+        <td>Force the element action to propagate just once</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>altKey</var></td>
+        <td class="val">true</td>
+        <td class="val">bool</td>
+        <td>Is the "Alt" key required for accesskeys action?</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>ctrlKey</var></td>
+        <td class="val">true</td>
+        <td class="val">bool</td>
+        <td>Is the "Ctrl" key required for accesskeys action?</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>helpKey</var></td>
+        <td class="val">H</td>
+        <td class="val">null / char</td>
+        <td>Key character to activate the HELP tool of the plugin, showing all elements tooltips at once. Set on empty string to use only "Ctrl+Alt" ; set on NULL to deactivate this feature ; this key must follow the same rules as the "accesskey" option.</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>showHelp</var></td>
+        <td class="val">false</td>
+        <td class="val">bool</td>
+        <td>Use the HELP message indicating how to use access-keys</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>helpText</var></td>
+        <td class="val"><small>
+Access-Keys Information
+<br />
+Keyboard shortcuts are defined to access some of the page elements or actions.
+<br />
+Press "%s[key]" to activate the element with this accesskey.
+        </small></td>
+        <td class="val">string</td>
+        <td>The global helper text to show when the "help" key shortcut is used. Any <var>%s</var> in this value will be replaced by the plugin activation keys suite (<em>"Ctrl+Alt+" by default</em>).</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>prefix</var></td>
+        <td class="val">[%s]</td>
+        <td class="val">string</td>
+        <td>The string prefix used at the beginning at the help tooltip's text. Any <var>%s</var> in this value will be replaced by the element accesskey letter.</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>safeHTML</var></td>
+        <td class="val">false</td>
+        <td class="val">bool</td>
+        <td>Set to true to force the default HTML accesskey feature <span class="note">By default, the <var>accesskey</var> attribute is removed in each element and added as an HTML5 <var>data-accesskey</var> attribute ; this way, the plugin can control each element key-pressed action, handle multiple calls (<em>with the "propagateOnce" option</em>) and totally disables the accesskeys actions if required. See <a href="#manip">the elements manipulation</a> section of this page for more infos.</span></td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>noDuplicates</var></td>
+        <td class="val">false</td>
+        <td class="val">bool</td>
+        <td>Set to true to throw an error on duplicate key usage (<em>when the same key is used more than once in DOM</em>)</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>showOptions</var></td>
+        <td class="val">null</td>
+        <td class="val">misc</td>
+        <td>
+            A set of options or an option string passed to the <var>jQuery.show()</var> function when showing a tooltip, or a specific user defined callback.
+            <br />For more infos, see <a href="http://api.jquery.com/show/">$().show()</a> or, if you use the jQuery UI native Tooltips, <a href="http://api.jqueryui.com/position/">$.ui.position()</a>.
+        </td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>hideOptions</var></td>
+        <td class="val">null</td>
+        <td class="val">misc</td>
+        <td>
+            A set of options or an option string passed to the <var>jQuery.hide()</var> function when hiding a tooltip, or a specific user defined callback.
+            <br />For more infos, see <a href="http://api.jquery.com/hide/">$().hide()</a> or, if you use the jQuery UI native Tooltips, <a href="http://api.jqueryui.com/position/">$.ui.position()</a>.
+        </td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>showEvents</var></td>
+        <td class="val">mouseover</td>
+        <td class="val">event type list separated by space</td>
+        <td>
+            A list of events toggling the <var>showTooltip()</var> action (<em>in addition to the keydown</em>).
+            <br />For more infos, see <a href="http://api.jquery.com/bind/">$().bind()</a>.
+        </td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>hideEvents</var></td>
+        <td class="val">mouseout</td>
+        <td class="val">event type list separated by space</td>
+        <td>
+            A list of events toggling the <var>hideTooltip()</var> action (<em>in addition to the keyup</em>).
+            <br />For more infos, see <a href="http://api.jquery.com/bind/">$().bind()</a>.
+        </td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>onClick</var></td>
+        <td class="val">
+            <var>"follow_href"</var> for elements with an "href" attribute
+            <br />
+            <var>"select"</var> for form elements
+            <br />
+            <var>"submit"</var> for buttons
+            <br />
+            <var>"focus"</var> for the rest
+        </td>
+        <td class="val">string / null</td>
+        <td>A special method to execute on element action (<em>such as an href following for links, which is the default behavior</em>).</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>timeout</var></td>
+        <td class="val">3000</td>
+        <td class="val">numeric (in milliseconds)</td>
+        <td>The value of the timeout before hiding tooltips.</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>debug</var></td>
+        <td class="val">false</td>
+        <td class="val">bool</td>
+        <td>Activate the plugin debug : write some infos in console</td>
+    </tr>
+
+    </tbody>
+</table>
+
+<h3 id="tooltips">Plugin's tooltips</h3>
+
+<p>The plugin defines its own tooltip display object, constructed as:</p>
+
+<pre class="code" data-language="html">
+&lt;div class="accesskey-tooltip" role="tooltip"&gt;
+    &lt;span class="accesskey-tooltip-content"&gt;
+        The helper text of my object
+    &lt;/span&gt;
+&lt;/div&gt;
+</pre>
+
+<p>which is rendered in page as:</p>
+
+<div class="accesskey-tooltip" style="position: relative !important; width: auto;">
+    <span class="accesskey-tooltip-content">
+        The helper text of my object
+    </span>
+</div>
+<br class="clear" />
+
+<p>You can style these tooltips overwriting the CSS definitions of the file <var>jquery-accesskey.css</var>.</p>
+
+<p>Additionally to the options described above, you can specify the following options for the tooltips' construction:</p>
+
+<pre class="code">
+    $.fn.accesskey.defaults.tooltip = {
+        // tooltip wrapper settings
+        wrapper: {
+            element:    'div',
+            attributes: {
+                class:  'accesskey-tooltip',
+                role:   'tooltip'
+            },
+        },
+        // tooltip content settings
+        content: {
+            element:    'span',
+            attributes: {
+                class:  'accesskey-tooltip-content',
+            },
+        },
+        // special wrapper class for the HELP tooltip
+        helperClass:    'accesskey-tooltip-helper'
+    };
+</pre>
+
+<h3 id="callbacks">Callbacks</h3>
+
+<p>The default life-cycle of the plugin could be schematize like that:</p>
+
+<ul>
+    <li>1. at each first call of the plugin, an element or a collection of elements is <var>initialized</var>,</li>
+    <li>2. on a keypress event, the corresponding <var>keydownAction</var> method is toggled and the tooltip message is shown, with a specific life-cycle like:<ul>
+        <li>2.a. the tooltip is first <var>created</var> if it dosen't exist,</li>
+        <li>2.b. the created tooltip is <var>shown</var>, displayed on screen,</li>
+    </ul></li>
+    <li>3. on a keyup event (<em>when user release the key</em>), the corresponding <var>keyupAction</var> method is toggled and the tooltip message is hidden, with a specific life-cycle like:<ul>
+        <li>3.a. after the <var>timeout</var> defined in the options, the tooltip is <var>hidden</var>, removed from screen,</li>
+        <li>3.b. then it is <var>deleted</var> from the HTML,</li>
+    </ul></li>
+    <li>4. if you call the <var>destroy</var> method on an element, everything goes back as it was written initially in your HTML code.</li>
+</ul>
+
+<p>To define a callback, use:</p>
+
+<pre class="code">
+$('selection').accesskey({
+    onShow: function( $element ){
+        // write an info on console
+        console.debug('"onShow" user defined callback receiving args ', arguments);
+    }
+});
+</pre>
+
+<p>Here is the list of the callbacks automatically called during the life-cycle of the plugin:</p>
+
+<table class="tablesorter">
+    <thead><tr>
+        <th title="Sort entries by this column value">Callback name</th>
+        <th title="Sort entries by this column value">Type</th>
+        <th title="Sort entries by this column value">Parameters</th>
+        <th title="Sort entries by this column value">Callback life cycle</th>
+    </tr></thead>
+    <tbody>
+
+    <tr>
+        <td class="var"><var>onInit</var></td>
+        <td class="val">function( $elements )</td>
+        <td><var>$elements</var> : a jQuery object of the selected elements</td>
+        <td>Called after plugin initialization.</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>onDestroy</var></td>
+        <td class="val">function( $elements )</td>
+        <td><var>$elements</var> : a jQuery object of the selected elements</td>
+        <td>Called after destruction of an initialized instance.</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>onCreate</var></td>
+        <td class="val">function( $element )</td>
+        <td><var>$element</var> : a single jQuery object representing the active element</td>
+        <td>Called after a tooltip element creation.</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>onDelete</var></td>
+        <td class="val">function( $element )</td>
+        <td><var>$element</var> : a single jQuery object representing the active element</td>
+        <td>Called after a tooltip element deletion.</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>onShow</var></td>
+        <td class="val">function( $element )</td>
+        <td><var>$element</var> : a single jQuery object representing the active element</td>
+        <td>Called after a tooltip element is shown.</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>onHide</var></td>
+        <td class="val">function( $element )</td>
+        <td><var>$element</var> : a single jQuery object representing the active element</td>
+        <td>Called after a tooltip element is hidden.</td>
+    </tr>
+
+    </tbody>
+</table>
+
+<h3 id="methods">Methods</h3>
+
+<p>You can access plugin's methods on a selection writing:</p>
+
+<pre class="code">
+$('selection').accesskey( "method name" , arg, uments, ... );
+</pre>
+
+<p>Here is the list of the methods of the plugin:</p>
+
+<table class="tablesorter">
+    <thead><tr>
+        <th title="Sort entries by this column value">Method name</th>
+        <th title="Sort entries by this column value">Type</th>
+        <th title="Sort entries by this column value">Parameters</th>
+        <th title="Sort entries by this column value">Return / Action</th>
+    </tr></thead>
+    <tbody>
+
+    <tr>
+        <td class="var"><var>getData</var></td>
+        <td class="val">function()</td>
+        <td></td>
+        <td>Returns an object of the "accesskey" data of an element as they are handled by <var>$.data()</var>. For more infos, see <a href="http://api.jquery.com/data/">$().data()</a>.</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>getOption</var></td>
+        <td class="val">function( option_name )</td>
+        <td><var>option_name</var> : the name of the option te get</td>
+        <td>Returns the current value of the option for the selection.</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>showAll</var></td>
+        <td class="val">function( {options} )</td>
+        <td><var>options</var> : a set of options that would be valid during this call only</td>
+        <td>Show all tooltips of instance on screen.</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>hideAll</var></td>
+        <td class="val">function( {options} )</td>
+        <td><var>options</var> : a set of options that would be valid during this call only</td>
+        <td>Hide all tooltips of instance from screen.</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>toggleAll</var></td>
+        <td class="val">function( {options} )</td>
+        <td><var>options</var> : a set of options that would be valid during this call only</td>
+        <td>Toggle all tooltips (show or hide) of instance.</td>
+    </tr>
+
+    </tbody>
+</table>
+
+<h3 id="internalmethods">Internal methods</h3>
+
+<p>In the same idea as callbacks of the section above, you can overwrite some of the internal plugin methods managing the events handling and the tooltips life. <strong>Defining these functions yourself, be aware that they are necessary to the normal life of the plugin as they handle the tooltip creation and display!</strong></p>
+
+<p>Here is the list of the methods automatically called during the life-cycle of the plugin:</p>
+
+<table class="tablesorter">
+    <thead><tr>
+        <th title="Sort entries by this column value">Variable name</th>
+        <th title="Sort entries by this column value">Calling method</th>
+        <th title="Sort entries by this column value">Parameters</th>
+        <th title="Sort entries by this column value">Method action</th>
+    </tr></thead>
+    <tbody>
+
+    <tr>
+        <td class="var"><var>keydownAction</var></td>
+        <td class="val">function( event, $element )</td>
+        <td>
+            <var>event</var> : the jQuery event as it was received, for more infos, see <a href="http://api.jquery.com/category/events/event-object/">$.Event()</a>.
+            <br />
+            <var>$element</var> : a single jQuery object representing the active element
+        </td>
+        <td>Method called on the <var>keydown</var> event on the key of an element <span class="note" data-noteref="events">The default behavior of the <var>keydown/keyup</var> events are set to emulate a classic usage of accesskeys : the target element is "clicked" and "focused".</span></td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>keyupAction</var></td>
+        <td class="val">function( event, $element )</td>
+        <td>
+            <var>event</var> : the jQuery event as it was received, for more infos, see <a href="http://api.jquery.com/category/events/event-object/">$.Event()</a>.
+            <br />
+            <var>$element</var> : a single jQuery object representing the active element
+        </td>
+        <td>Method called on the <var>keyup</var> event on the key of an element <span class="note" data-noteref="events"></span></td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>createTooltip</var></td>
+        <td class="val">function( $element, {options} )</td>
+        <td>
+            <var>element</var> : the target DOM element (a jQuery object)
+            <br />
+            <var>options</var> : a set of options that will extend the element options for now and in the future <span class="note" data-noteref="global_opts">Keep in mind that if you set some options calling one of these methods, they will overwrite the original options you set at the <var>$().accesskey()</var> call for now and for any future usage.</span>
+        </td>
+        <td>Method called at each tooltip creation ; default is the creation of internal tooltip <span class="note" data-noteref="overwrite">These methods can be overwritten for example when you want to use the <a href="http://jqueryui.com/tooltip/"><em>jQuery UI Tooltips</em></a> instead of the internal ones ; see <a href="jquery_ui.html">this example page</a> for more infos.</span></td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>showTooltip</var></td>
+        <td class="val">function( $element, {options} )</td>
+        <td>
+            <var>element</var> : the target DOM element (a jQuery object)
+            <br />
+            <var>options</var> : a set of options that will extend the element options for now and in the future <span class="note" data-noteref="global_opts"></span>
+        </td>
+        <td>Method called at each tooltip displaying ; default is showing the internal tooltip <span class="note" data-noteref="overwrite"></span></td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>hideTooltip</var></td>
+        <td class="val">function( $element, {options} )</td>
+        <td>
+            <var>element</var> : the target DOM element (a jQuery object)
+            <br />
+            <var>options</var> : a set of options that will extend the element options for now and in the future <span class="note" data-noteref="global_opts"></span>
+        </td>
+        <td>Method called at each tooltip hiding ; default is hiding the internal tooltip <span class="note" data-noteref="overwrite"></span></td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>deleteTooltip</var></td>
+        <td class="val">function( $element, {options} )</td>
+        <td>
+            <var>element</var> : the target DOM element (a jQuery object)
+            <br />
+            <var>options</var> : a set of options that will extend the element options for now and in the future <span class="note" data-noteref="global_opts"></span>
+        </td>
+        <td>Method called at each tooltip deletion ; default is deleting the internal tooltip <span class="note" data-noteref="overwrite"></span></td>
+    </tr>
+
+    </tbody>
+</table>
+
+<h3 id="handlers">Global handlers</h3>
+
+<p>The plugin propose a set of global methods to handle one/all accesskey element and manage the plugin's action. To call one of these methods, write:</p>
+
+<pre class="code">
+var myvar = $.fn.accesskey.methodName( arguments );
+</pre>
+
+<table class="tablesorter">
+    <thead><tr>
+        <th title="Sort entries by this column value">Method name</th>
+        <th title="Sort entries by this column value">Calling method</th>
+        <th title="Sort entries by this column value">Method action</th>
+    </tr></thead>
+    <tbody>
+
+    <tr>
+        <td class="var"><var>enable</var></td>
+        <td class="val">function()</td>
+        <td>Enables the plugin features (enabled by default).</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>disable</var></td>
+        <td class="val">function()</td>
+        <td>Disbles the plugin features (enabled by default).</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>isEnable</var></td>
+        <td class="val">function()</td>
+        <td>Returns <var>true</var> if the plugin is currently enabled.</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>showAll</var></td>
+        <td class="val">function( {options} )</td>
+        <td>Show all tooltips on screen ; you can specify a set of options that would be valid during this call only.</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>hideAll</var></td>
+        <td class="val">function( {options} )</td>
+        <td>Hide all tooltips from screen ; you can specify a set of options that would be valid during this call only.</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>toggleAll</var></td>
+        <td class="val">function( {options} )</td>
+        <td>Toggle all tooltips (show or hide) ; you can specify a set of options that would be valid during this call only.</td>
+    </tr>
+
+    <tr>
+        <td class="var"><var>overview</var></td>
+        <td class="val">function()</td>
+        <td>This method returns an object containing all active elements of the DOM, in an array-like object <var>key => message</var>.</td>
+    </tr>
+
+    </tbody>
+</table>
+
+<h3 id="community">Open-Source & Community</h3>
+
+<p>This plugin is a free software, available under <a href="http://opensource.org/licenses/GPL-3.0" title="See online">General Public License version 3.0</a> ; you can freely use it, for yourself or a commercial use, modify its source code according to your needs, freely distribute your work and propose it to the community, as long as you let an information about its first author.</p>
+
+<p>As the sources are hosted on a <a href="http://git-scm.com/" title="See online">GIT</a> repository on <a href="http://github.com/piwi/jQuery-AccessKey" title="See online">GitHub</a>, you can modify it, to ameliorate a feature or correct an error, by <a href="https://help.github.com/articles/fork-a-repo" title="See instructions online">creating your own fork</a> of this repository, modifying it and <a href="http://github.com/piwi/jQuery-AccessKey/pulls" title="See instructions online">asking to pull your modifications</a> on the original branch.</p>
+
+    <pre style="margin: 1em 5em;">
+jQuery AccessKey Plugin vX.Y.Z
+http://github.com/piwi/jQuery-AccessKey
+Copyleft 2013, Pierre Cassat
+    </pre>
+
+    <h3>Warnings</h3>
+
+    <p>When developing with accesskeys, keep in mind that the <em>key codes</em> largely depends on the keyboard and the system that runs your website. To test your thoughts validity, you can use the excellent <a href="http://www.west-wind.com/WestwindWebToolkit/samples/Ajax/html5andCss3/keycodechecker.aspx">JavaScript and jQuery Key Code Checker</a> written by Rick Strahl <span class="note">Rick Strahl's blog can be found at <a href="http://www.west-wind.com/weblog/" title="See online">http://www.west-wind.com/weblog/</a>.</span>.</p>
+
+    <footer class="footnotes" role="contentinfo">
+    <h4>NOTES:</h4>
+    <ol id="footnotes_list"></ol>
+
+    <h4 id="todo">TODOS:</h4>
+    <ol>
+        <li>allow the new HTML5 "multiple characters" definition of the accesskeys, to let the current device choose the one corresponding the most to it</li>
+        <li>allow to truly choose the keys combination to call an access-key (<em>which is now "Ctrl+Alt"</em>)</li>
+    </ol>
+
+    <p class="credits">Last update of this page <time datetime="2013-02-05">Feb 5, 2013</time>.</p>
+    </footer>
+
+        </article>
+    </div>
+
+    <footer id="footer">
+		<div class="credits float-left">
+		    This page is <a href="" title="Check now online" id="html_validation">HTML5</a> & <a href="" title="Check now online" id="css_validation">CSS3</a> valid.
+		</div>
+		<div class="credits float-right">
+		    <a href="http://github.com/piwi/jQuery-AccessKey">jQuery AccessKey</a> plugin by <a href="https://github.com/pierowbmstr">Piero Wbmstr</a> under <a href="http://opensource.org/licenses/GPL-3.0">GNU GPL v.3</a> license.
+		</div>
+    </footer>
+
+    <div class="back_menu" id="short_navigation">
+        <a href="#jq_helpbox" title="See the jQuery help box of this page">&larr;<span class="text">&nbsp;jQuery help box</span></a>
+        &nbsp;|&nbsp;
+        <a href="#" title="See navigation menu" id="short_menu_handler"><span class="text">Navigation Menu</span></a>
+        &nbsp;|&nbsp;
+        <a href="#top" title="Back to the top of the page"><span class="text">Back to top&nbsp;</span>&uarr;</a>
+        <ul id="short_menu" class="menu" role="menu"></ul>
+    </div>
+
+    <div id="message_box" class="msg_box"></div>
+
+<!-- jQuery lib -->
+<script src="assets/jquery/jquery-1.9.1.min.js"></script>
+
+<!-- HTML5 boilerplate -->
+<script src="assets/html5boilerplate/js/plugins.js"></script>
+
+<!-- jQuery.highlight plugin -->
+<script src="assets/jquery/jquery.highlight.js"></script>
+
+<!-- jQuery.tablesorter plugin -->
+<script src="assets/jquery/jquery.tablesorter.min.js"></script>
+
+<!-- scripts for demo -->
+<script src="assets/scripts.js"></script>
+
+<script>
+$(function() {
+    initBacklinks();
+    activateMenuItem();
+    getToHash();
+    buildFootNotes();
+    addCSSValidatorLink('assets/styles.css');
+    addHTMLValidatorLink();
+    $("#user_agent").html( navigator.userAgent );
+    $('pre.code').highlight({source:0, indent:'tabs', code_lang: 'data-language'});
+    initHandler('source');
+    $('#source_block_content').text( $('#js_code').html() );
+});
+</script>
+<script id="js_code">
+$(function() {
+    $("[accesskey]").accesskey();
+});
+</script>
+</body>
+</html>
