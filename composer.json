@@ -17,6 +17,7 @@
     "piwi/markdown-extended": "dev-master"
   },
   "config": {
+    "bin-dir": "bin",
     "branch-alias": {
       "dev-master": "1.0-dev"
     }
