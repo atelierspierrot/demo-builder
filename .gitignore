@@ -5,6 +5,11 @@ composer.lock
 tmp/*
 dev/*
 vendor/*
+bin/html5-quick-template.html.php
+bin/markdown-extended
+bin/markdown-extended.man
+bin/markdown-extended-documentation.man
+bin/php-quick-lib.php
 
 # hack
 !.gitkeep
