@@ -4,6 +4,8 @@
 if (!defined('PHPQLIB_NAME')) {
     if (file_exists($phpqlib = __DIR__.'/bin/php-quick-lib.php')) {
         require_once $phpqlib;
+    } elseif (file_exists($phpqlib = __DIR__.'/../../bin/php-quick-lib.php')) {
+        require_once $phpqlib;
     } else {
         die('PHP-Quick-Library not found!');
     }
@@ -31,6 +33,8 @@ function get_demo_builder_file_path($file_name)
         return $local;
     } elseif (file_exists($demo = get_path(__DIR__.'/'.$file_name))) {
         return $demo;
+    } elseif (file_exists($vendor = get_path(__DIR__.'/../../'.$file_name))) {
+        return $vendor;
     }
     return null;
 }
