@@ -12,7 +12,7 @@
   "minimum-stability": "dev",
   "require": {
     "php": ">=5.3.0",
-    "piwi/php-quick-lib": "dev-dev",
+    "piwi/php-quick-lib": "1.*",
     "piwi/html5-quick-template": "1.*",
     "piwi/markdown-extended": "dev-master"
   },
