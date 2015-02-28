@@ -1,0 +1,10 @@
+# .gitignore
+# Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
+
+composer.lock
+tmp/*
+dev/*
+vendor/*
+
+# hack
+!.gitkeep
